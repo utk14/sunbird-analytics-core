@@ -30,9 +30,7 @@ object BatchJobDriver {
             val spark = if (sc.isEmpty) {
                 val sparkCassandraConnectionHost = config.modelParams.getOrElse(Map()).get("sparkCassandraConnectionHost")
                 val sparkElasticsearchConnectionHost = config.modelParams.getOrElse(Map()).get("sparkElasticsearchConnectionHost")
-                val sparkRedisConnectionHost = config.modelParams.getOrElse(Map()).get("sparkRedisConnectionHost")
-                val sparkRedisDB = config.modelParams.getOrElse(Map()).get("sparkRedisDB")
-                CommonUtil.getSparkContext(JobContext.parallelization, config.appName.getOrElse(config.model), sparkCassandraConnectionHost,sparkElasticsearchConnectionHost, sparkRedisConnectionHost, sparkRedisDB)
+                CommonUtil.getSparkContext(JobContext.parallelization, config.appName.getOrElse(config.model), sparkCassandraConnectionHost,sparkElasticsearchConnectionHost)
             } else {
                 sc.get
             }
